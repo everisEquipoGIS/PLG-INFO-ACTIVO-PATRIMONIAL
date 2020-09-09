@@ -1,0 +1,161 @@
+{
+  "url": {
+    "name": "PLG_Info_Activo_Patrimonial",
+    "separator": "*"
+  },
+  "constructor": "M.plugin.PLG_Info_Activo_Patrimonial",
+  "parameters": [
+    {
+      "type": "object",
+      "properties": [
+        {
+          "name": "estilosCapaPuntuales",
+          "type": "Object",
+          "description": "Estilos para la capa de activos puntuales.",
+          "properties": [
+            {
+              "name": "estiloCluster",
+              "type": "M.style.Composite",
+              "description": "Estilo compuesto de clúster y categorías"
+            },
+            {
+              "name": "estiloCategoria",
+              "type": "M.style.Category",
+              "description": "Estilo de categorías de iconos"
+            }
+          ]
+        },
+        {
+          "name": "urlConsultaWFS",
+          "type": "String",
+          "description": "Url del servicio WFS"
+        },
+        {
+          "name": "maxArea",
+          "type": "Number",
+          "description": "Área máxima de la selección"
+        },
+        {
+          "name": "ficha",
+          "type": "object",
+          "description": "Enlace de Pangea que se usará en la redirección a un bien inmueble",
+          "properties": [
+            {
+              "name": "prev",
+              "type": "String",
+              "description": "Parte de la URL que se añade antes del número de inventario"
+            }, {
+              "name": "pos",
+              "type": "String",
+              "description": "Parte de la URL que se añade después del número de inventario"
+            }
+          ]
+        }, {
+          "name": "pdf",
+          "type": "object",
+          "description": "Enlace de Pangea que se usará en la redirección al PDF de un bien inmueble",
+          "properties": [
+            {
+              "name": "prev",
+              "type": "String",
+              "description": "Parte de la URL que se añade antes del número de inventario"
+            }, {
+              "name": "pos",
+              "type": "String",
+              "description": "Parte de la URL que se añade después del número de inventario"
+            }
+          ]
+        }, {
+          "name": "capa_wfs_bienes",
+          "type": "String",
+          "description": "URL del GeoJSON de la capa de bienes del servicio WFS"
+        }, {
+          "name": "capa_wfs_parcelas",
+          "type": "String",
+          "description": "URL del GeoJSON de la capa de bienes del servicio WFS"
+        }, {
+          "name": "apiURL",
+          "type": "String",
+          "description": "URL de la API de Pangea"
+        }, {
+          "name": "nombreCapaPuntuales",
+          "type": "String",
+          "description": "Nombre de la capa de Activos Puntuales en el visor"
+        }, {
+          "name": "wmsLayers",
+          "type": "Array of Strings",
+          "description": "Lista con los nombres de las capas WMS sobre las que se harán la consulta"
+        }, {
+          "name": "capaATipo",
+          "type": "object",
+          "description": "Diccionario con los nombres de las capas WMS en formato legible por humanos",
+          "properties": [
+            {
+              "name": "[Nombre de la capa del servicio WMS]",
+              "type": "String",
+              "description": "Las claves serán el nombre de la capa, mientras que los valores serán el nombre en formato legible"
+            }
+          ]
+        }, {
+          "name": "iconoPuntoSeleccionado",
+          "type": "object",
+          "description": "Simbología que se le añadirá a los activos puntuales al pulsar sobre ellos",
+          "properties": [
+            {
+              "name": "[Tipo de bien de la geometría]",
+              "type": "object",
+              "properties": [
+                {
+                  "name": "url",
+                  "type": "String",
+                  "description": "Imagen del icono en base 64"
+                }, {
+                  "name": "scale",
+                  "type": "String",
+                  "description": "Escala a aplicar en el icono"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "files": {
+    "ol": {
+      "scripts": ["plg_info_activo_patrimonial.ol.min.js"],
+      "styles": ["plg_info_activo_patrimonial.ol.min.css"]
+    }
+  },
+  "metadata": {
+    "uuid_plugin": "3f3f19f9-3e88-4490-9f1e-7f5bf9a52f78",
+    "uuid_version_plugin": "a366d720-5c5d-4903-bdd9-3fc5d8d9e1e3",
+    "version_ficha_metadatos": "2.0.0",
+    "name": "Información de activos",
+    "description": "Muestra información sobre los bienes de las capas de activos.",
+    "text": "Plugin de permite mostrar información sobre los diferentes activos que se encuentran en el visor. Para usarlo, se deberá activar el control de selección puntual y hacer click en el mapa en algún punto donde haya bienes o bien activar el control de selección por área y seleccionar un área del mapa. Solo mostrará información sobre aquellas capas que estén activadas.",
+    "version": "1.2.1",
+    "date": "05/08/2020",
+    "author": "Ministerio de Medioambiente y Ordenación del Territorio",
+    "org": "Junta de Andalucía",
+    "tags": "mapea,plugin,informacion,activos,pangea",
+    "icon": "data:image/png;base64,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",
+    "buttons": [
+      {
+        "title": " Selección puntual",
+        "description": "Activa y desactiva el control de selección puntual",
+        "querySelector": ".m-control.m-plg_seleccion_espacial #buttonActivatePLG_Seleccion"
+      },
+      {
+        "title": "Selección por área",
+        "description": "Activa y desactiva el control de selección por área",
+        "querySelector": ".m-control.m-plg_seleccion_area #seleccion_area"
+      }
+    ],
+    "dependencies": {
+      "modules": ["regenerator-runtime", "jquery", "Handlebars", "d3"],
+      "plugins": [],
+      "services": []
+    }
+  }
+}
